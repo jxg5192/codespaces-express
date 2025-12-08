@@ -236,3 +236,9 @@ body {
   font-size: 13px;
   color: #374151;
 }
+
+
+.tag-goal {
+  background-color: #fee2ff;  /* soft pink/lilac */
+  color: #86198f;
+}
