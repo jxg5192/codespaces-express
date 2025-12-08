@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Questrial&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Questrial&family=Rethink+Sans:ital,wght@0,400..800;1,400..800&display=swap');
+
+body {
+  margin: 0;
+  font-family: "Questrial", sans-serif;
+  /* background: #e7f7ee; */
+  background: #eefaf1; 
+  color: #1f2937;
+}
+
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.logo-img {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;        /* ensures the image fills the shape */
+  border-radius: 22px;      /* rounded corners */
+  display: block;
+  margin: 0 auto 24px;      /* centers it */
+  box-shadow: 0 12px 28px rgba(16, 185, 129, 0.25);
+  transition: transform 0.35s; 
+}
+
+.logo-img:hover {
+  transform: rotate(5deg); /* slight rotation + cute pop */
+}
+
+h1 {
+  font-family: "Cal Sans", sans-serif;
+  font-size: 60px;
+  margin: 10px 0 20px 0;
+  font-weight: 700;
+  color: #111827;
+}
+
+.subtitle {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #6b7280;
+  /* color: #4b5563; */
+  max-width: 600px;
+  margin: 0 auto 35px auto;
+}
+
+.cta-btn {
+  font-family: "Cal Sans", sans-serif;
+  display: inline-block;
+  background-color: #0bb980;
+  color: white;
+  padding: 14px 28px;
+  /* font-size: 18px; */
+  font-size: 20px; 
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 12px;
+  margin-top: 10px;
+  transition: all 0.2s ease;
+}
+
+.cta-btn:hover {
+  background-color: #079669;
+  transform: translateY(-2px);
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  margin-top: 50px;
+}
+
+.stat h3 {
+  font-size: 32px;
+  margin: 0;
+  /* color: #1f2937; */
+  color: #079669; 
+  font-family: "Cal Sans", sans-serif;
+}
+
+.stat p {
+  font-size: 15px;
+  margin-top: 6px;
+  color: #6b7280;
+}
+
+footer {
+  text-align: center;
+  /* margin-top: px; */
+}
+
+footer p {
+  font-size: 13px;        /* smaller text */
+  color: #6b7280;         /* soft gray */
+  margin: 6px 0;      
+}
+
+.badge {
+  background-color: #d7f5df;
+  color: #166534;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 6px;
+}

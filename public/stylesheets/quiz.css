@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Questrial&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Questrial&family=Rethink+Sans:ital,wght@0,400..800;1,400..800&display=swap');
+
+body {
+  margin: 0;
+  font-family: "Questrial", sans-serif;
+  /* background: #e7f7ee; */
+  background: #eefaf1; 
+  color: #1f2937;
+}
+
+/* Layout */
+.quiz-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 16px 80px;
+}
+
+/* Header */
+.quiz-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.quiz-header h1 {
+  font-family: "Cal Sans", sans-serif;
+  font-size: 34px;
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+
+.quiz-header p {
+  margin: 0;
+  font-size: 16px;
+  color: #6b7280;
+}
+
+/* Card */
+.form-card {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 28px 24px 32px;
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
+}
+
+/* Form elements */
+.form-group {
+  margin-bottom: 22px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.group-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 10px;
+}
+
+.group-label span {
+  font-weight: 400;
+  color: #6b7280;
+  margin-left: 4px;
+  font-size: 13px;
+}
+
+.icon-inline {
+  margin-right: 6px;
+}
+
+/* Select styling */
+select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+  font-size: 14px;
+  color: #111827;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, #9ca3af 50%),
+    linear-gradient(135deg, #9ca3af 50%, transparent 50%);
+  background-position: calc(100% - 18px) 16px, calc(100% - 13px) 16px;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+
+select:focus {
+  border-color: #6fd19a;
+  box-shadow: 0 0 0 3px rgba(111, 209, 154, 0.25);
+  background-color: #ffffff;
+}
+
+/* Checkboxes */
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 8px 24px;
+}
+
+.checkbox-grid label {
+  font-size: 14px;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkbox-grid input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #6fd19a;
+}
+
+/* Divider */
+.divider {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 20px 0 22px;
+}
+
+/* Submit button */
+.submit-btn {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 999px;
+  border: none;
+  background-color: #0bb97f60;
+  color: #ffffff;
+  font-family: "Cal Sans", sans-serif;
+  font-size: 16px; 
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.15s ease, transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.submit-btn:hover {
+  background-color: #079669;
+  transform: translateY(-2px);
+}
+
+.arrow {
+  font-size: 18px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .form-card {
+    padding: 22px 18px 26px;
+  }
+
+  .quiz-header h1 {
+    font-size: 28px;
+  }
+}

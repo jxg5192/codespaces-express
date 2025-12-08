@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Questrial&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Questrial&family=Rethink+Sans:ital,wght@0,400..800;1,400..800&display=swap');
+
+body {
+  margin: 0;
+  font-family: "Questrial", sans-serif;
+  /* background: #e7f7ee; */
+  background: #eefaf1; 
+  color: #1f2937;
+}
+
+/* Page container */
+.routine-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 16px 80px;
+}
+
+.hero-header{
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.hero-header h1 {
+  font-family: "Cal Sans", sans-serif;
+  font-size: 34px;
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+
+.hero-header p{
+  margin: 0;
+  font-size: 16px;
+  color: #6b7280;
+}
+
+/* Profile card */
+.profile-card {
+  margin-top: 32px;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 20px 22px 18px;
+  box-shadow: 0 12px 34px rgba(15, 23, 42, 0.12);
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background-color: #079669;
+}
+
+.profile-title {
+  font-weight: 700;
+  font-size: 18px;
+  font-family: "Cal Sans", sans-serif;
+}
+
+.profile-summary {
+  margin: 0 0 10px;
+  color: #111827;
+  font-size: 14px;
+}
+
+.profile-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.tag-green {
+  background-color: #d7f5df;
+  color: #166534;
+}
+
+.tag-blue {
+  background-color: #d8f1ff;
+  color: #0f5f8a;
+}
+
+/* Routine grid */
+.routine-grid {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+/* Routine card */
+.routine-card {
+  background-color: #ffffff;
+  border-radius: 24px;
+  padding: 18px 18px 22px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.routine-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.routine-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.routine-icon[data-type="sun"] {
+  background-color: #fff6db;
+}
+
+.routine-icon[data-type="moon"] {
+  background-color: #ebe5ff;
+}
+
+.routine-icon[data-type="calendar"] {
+  background-color: #dff9f0;
+}
+
+.routine-card-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: "Cal Sans", sans-serif;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 10px 0 14px;
+}
+
+/* Steps */
+.step-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.step-number {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background-color: #079669;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step-content h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.step-content p {
+  margin: 3px 0 0;
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.step-note {
+  margin-top: 2px;
+  font-style: italic;
+  color: #16a34a;
+}
+
+/* Pro tip card */
+.tip-card {
+  margin-top: 26px;
+  background-color: #f1fdf5;
+  border-radius: 24px;
+  padding: 16px 18px 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  border: 1px solid #bbf7d0;
+}
+
+.tip-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background-color: #bbf7d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #166534;
+  flex-shrink: 0;
+}
+
+.tip-content h3 {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.tip-content p {
+  margin: 0;
+  font-size: 13px;
+  color: #374151;
+}

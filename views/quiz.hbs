@@ -1,0 +1,114 @@
+<main class="quiz-page">
+  <header class="quiz-header">
+    <h1>Tell Us About Your Hair</h1>
+    <p>Answer a few quick questions to get your personalized routine</p>
+  </header>
+
+  <section class="form-card">
+    <form id="hairQuiz">
+      <!-- Curl pattern -->
+      <div class="form-group">
+        <label for="curlPattern">What's your curl pattern?</label>
+        <select id="curlPattern" name="curlPattern">
+          <option value="" disabled selected>Select your curl type</option>
+          <option>2A</option>
+          <option>2B</option>
+          <option>2C</option>
+          <option>3A</option>
+          <option>3B</option>
+          <option>3C</option>
+          <option>4A</option>
+          <option>4B</option>
+          <option>4C</option>
+        </select>
+      </div>
+
+      <!-- Porosity -->
+      <div class="form-group">
+        <label for="porosity">What's your hair porosity?</label>
+        <select id="porosity" name="porosity">
+          <option value="" disabled selected>Select porosity level</option>
+          <option>Low - Water beads up, takes long to absorb </option>
+          <option>Medium - Balanced moisture retention </option>
+          <option>High - Absorb quickly, loses moisture fast</option>
+        </select>
+      </div>
+
+      <!-- Density -->
+      <div class="form-group">
+        <label for="density">What's your hair density?</label>
+        <select id="density" name="density">
+          <option value="" disabled selected>Select density</option>
+          <option>Low - Can see scalp easily </option>
+          <option>Medium - Some scalp visbility </option>
+          <option>High - Thick, difficult to see scalp </option>
+        </select>
+      </div>
+
+      <!-- Scalp -->
+      <div class="form-group">
+        <label for="scalp">What's your scalp condition?</label>
+        <select id="scalp" name="scalp">
+          <option value="" disabled selected>Select scalp type</option>
+          <option>Dry - Flaky, tight feeling </option>
+          <option>Normal - Balanced, comfortable </option>
+          <option>Oily - Greasy, needs frequent washing </option>
+        </select>
+      </div>
+
+      <!-- Goals -->
+      <div class="form-group">
+        <p class="group-label">
+          What are your main hair goals? <span>(Select all that apply)</span>
+        </p>
+        <div class="checkbox-grid">
+          <label>
+            <input type="checkbox" name="goals" value="moisture" />
+            Moisture &amp; Hydration
+          </label>
+          <label>
+            <input type="checkbox" name="goals" value="volume" />
+            Volume &amp; Lift
+          </label>
+          <label>
+            <input type="checkbox" name="goals" value="frizz" />
+            Frizz Control
+          </label>
+          <label>
+            <input type="checkbox" name="goals" value="definition" />
+            Curl Definition
+          </label>
+          <label>
+            <input type="checkbox" name="goals" value="strength" />
+            Strength &amp; Growth
+          </label>
+          <label>
+            <input type="checkbox" name="goals" value="scalpHealth" />
+            Scalp Health
+          </label>
+        </div>
+      </div>
+
+      <!-- Humidity -->
+      <div class="form-group">
+        <p class="group-label">
+          What's your typical humidity level?
+        </p>
+        <select id="humidity" name="humidity">
+          <option value="" disabled selected>Select humidity level</option>
+          <option>Low - Dry Climate (0–39%)</option>
+          <option>Medium - Balanced (40–59%)</option>
+          <option>High - Humid Climate (60%+)</option>
+        </select>
+      </div>
+
+      <hr class="divider" />
+
+      <!-- Button -->
+      <button type="submit" class="submit-btn">
+        Generate My Routine
+        <span class="arrow">➜</span>
+      </button>
+    </form>
+  </section>
+</main>
