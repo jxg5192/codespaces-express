@@ -10,14 +10,14 @@ body {
   color: #1f2937;
 }
 
-/* Layout */
+/* Layout - center and w padding*/
 .quiz-page {
   max-width: 900px;
   margin: 0 auto;
   padding: 60px 16px 80px;
 }
 
-/* Header */
+/* Header - center w some space under */
 .quiz-header {
   text-align: center;
   margin-bottom: 32px;
@@ -36,19 +36,19 @@ body {
   color: #6b7280;
 }
 
-/* Card */
+/* white box/card for actual quiz*/
 .form-card {
   background: #ffffff;
   border-radius: 24px;
   padding: 28px 24px 32px;
-  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
 }
 
-/* Form elements */
+/* spacing btwn questions */
 .form-group {
   margin-bottom: 22px;
 }
 
+/* bolding question labels  */
 .form-group label {
   display: block;
   font-size: 14px;
@@ -57,6 +57,7 @@ body {
   margin-bottom: 8px;
 }
 
+/* for the checkbox question  */
 .group-label {
   font-size: 14px;
   font-weight: 700;
@@ -75,38 +76,46 @@ body {
   margin-right: 6px;
 }
 
-/* Select styling */
+
+/* STYLING FOR THE DROP DOWN MENUS */
+
 select {
   width: 100%;
   padding: 12px 14px;
   border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  background-color: #f9fafb;
+  border: 1px solid #e5e7eb; /* grey border around drop down color */
+  background-color: #f9fafb; /* grey background color */
   font-size: 14px;
   color: #111827;
   outline: none;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
-  appearance: none;
-  background-image: linear-gradient(45deg, transparent 50%, #9ca3af 50%),
-    linear-gradient(135deg, #9ca3af 50%, transparent 50%);
-  background-position: calc(100% - 18px) 16px, calc(100% - 13px) 16px;
-  background-size: 5px 5px, 5px 5px;
-  background-repeat: no-repeat;
 }
 
+
+/* when user clicks on the drop down menu highlight in green */
 select:focus {
   border-color: #6fd19a;
   box-shadow: 0 0 0 3px rgba(111, 209, 154, 0.25);
   background-color: #ffffff;
 }
 
-/* Checkboxes */
-.checkbox-grid {
+/* Checkboxes for the last question */
+
+/* gridding them so they line up in columns */
+/* .checkbox-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 8px 24px;
+} */
+
+.checkbox-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* spacing between items */
 }
 
+
+/* aligning the check icon with the text next to it */
 .checkbox-grid label {
   font-size: 14px;
   color: #374151;
@@ -115,18 +124,13 @@ select:focus {
   gap: 8px;
 }
 
+/* square sizing for the checkbox */
 .checkbox-grid input[type="checkbox"] {
   width: 18px;
   height: 18px;
   accent-color: #6fd19a;
 }
 
-/* Divider */
-.divider {
-  border: none;
-  border-top: 1px solid #e5e7eb;
-  margin: 20px 0 22px;
-}
 
 /* Submit button */
 .submit-btn {
@@ -144,7 +148,6 @@ select:focus {
   justify-content: center;
   gap: 8px;
   transition: background-color 0.15s ease, transform 0.15s ease,
-    box-shadow 0.15s ease;
 }
 
 .submit-btn:hover {
@@ -156,7 +159,7 @@ select:focus {
   font-size: 18px;
 }
 
-/* Responsive tweaks */
+/* Responsive  */
 @media (max-width: 600px) {
   .form-card {
     padding: 22px 18px 26px;
@@ -166,3 +169,29 @@ select:focus {
     font-size: 28px;
   }
 }
+
+/* styling for enter name */
+input[type="text"] {
+  width: 90%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;   /* same grey border */
+  background-color: #f9fafb;    /* same grey background */
+  font-size: 14px;
+  color: #111827;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* highlight in green when focused */
+input[type="text"]:focus {
+  border-color: #6fd19a;
+  box-shadow: 0 0 0 3px rgba(111, 209, 154, 0.25);
+  background-color: #ffffff;
+}
+
+#name::placeholder {
+  color: #111827;
+  font-size: 14px;
+}
+

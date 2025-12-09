@@ -42,14 +42,15 @@ const sequelize = new Sequelize({
 // });
 
 
-// CREATING DATABASE
+// THE DATABASE
+// creating hairproduct table
 const HairProduct = sequelize.define('HairProduct', {
-  name: { type: DataTypes.STRING, allowNull: false },        // e.g. "Lightweight Foaming Mousse"
-  category: { type: DataTypes.STRING, allowNull: false },    // "cleanser" | "conditioner" | "styler" | "treatment" | "scalp"
-  curlGroup: { type: DataTypes.STRING, allowNull: false },   // "Wavy" | "Curly" | "Coily"
-  porosity: { type: DataTypes.STRING, allowNull: false },    // "Low" | "Medium" | "High" | "All"
-  density: { type: DataTypes.STRING, allowNull: false },     // "Low" | "Medium" | "High" | "All"
-  notes: { type: DataTypes.TEXT }                            // short description, optional
+  name: { type: DataTypes.STRING, allowNull: false },        // product name (Lightweight Foaming Mousse, etc.) 
+  category: { type: DataTypes.STRING, allowNull: false },    // what kind of product it is (cleanser, conditioner, styler, treatment, scalp)
+  curlGroup: { type: DataTypes.STRING, allowNull: false },   // curl group (wavy, curly, coily)
+  porosity: { type: DataTypes.STRING, allowNull: false },    // porosity type (low, high, med)
+  density: { type: DataTypes.STRING, allowNull: false },     // desnity type (low, high, med)
+  notes: { type: DataTypes.TEXT }                            //  description
 });
 
 
@@ -85,91 +86,247 @@ const HairProduct = sequelize.define('HairProduct', {
 //   }
 // }
 
+// async function seedIfEmpty() {
+//   const count = await HairProduct.count();
+//   if (count > 0) return;
+
 async function seedIfEmpty() {
-  const count = await HairProduct.count();
-  if (count > 0) return;
+  console.log("Clearing hair products...");
+  await HairProduct.destroy({ where: {} }); // deletes old rows
 
 
-  // creating array/rows for the db (products to store in the table)
+  // creating products array (rows to be insert into database)
   const products = [
-    // prods for wavy/low porosity hair... use when curlPattern starts with "2" and porosity matches "Low"
-    {
-      name: 'Gentle Low-Poo Cleanser',
-      category: 'cleanser',
-      curlGroup: 'Wavy',
-      porosity: 'Low',
-      density: 'All',
-      notes: 'Sulfate-free, light cleanser that won’t dry out fine waves.'
-    },
-    {
-      name: 'Lightweight Foaming Mousse',
-      category: 'styler',
-      curlGroup: 'Wavy',
-      porosity: 'Low',
-      density: 'Low',
-      notes: 'Adds volume and hold without weighing hair down.'
-    },
+    //WAVY HAIR... use when curlPattern starts with "2" 
+   // Low porosity – all densities (gentle cleanser)
+  {
+    name: 'Gentle Low-Poo Cleanser',
+    category: 'cleanser',
+    curlGroup: 'Wavy',
+    porosity: 'Low',
+    density: 'All',
+    notes: 'Sulfate-free, light cleanser that won’t dry out fine waves.'
+  },
 
-    // prods for curly/med porosity hair... use when curlPattern starts with "3" and porosity matches "medium"
-    {
-      name: 'Creamy Hydrating Conditioner',
-      category: 'conditioner',
-      curlGroup: 'Curly',
-      porosity: 'Medium',
-      density: 'All',
-      notes: 'Adds slip and moisture.'
-    },
-    {
-      name: 'Curl Defining Gel',
-      category: 'styler',
-      curlGroup: 'Curly',
-      porosity: 'Medium',
-      density: 'All',
-      notes: 'Medium hold to define curls and control frizz.'
-    },
+  // Low porosity + LOW density – very light styler
+  {
+    name: 'Lightweight Foaming Mousse',
+    category: 'styler',
+    curlGroup: 'Wavy',
+    porosity: 'Low',
+    density: 'Low',
+    notes: 'Adds volume and hold without weighing hair down.'
+  },
 
-    // prods for coily/high porosity hair... use when curlPattern starts with "4" and porosity matches "high"
-    {
-      name: 'Rich Butter Cream',
-      category: 'styler',
-      curlGroup: 'Coily',
-      porosity: 'High',
-      density: 'All',
-      notes: 'Seals in moisture and protects coils.'
-    },
-    {
-      name: 'Intense Moisture Hair Mask',
-      category: 'treatment',
-      curlGroup: 'Coily',
-      porosity: 'High',
-      density: 'All',
-      notes: 'Deep moisture treatment for dry, high-porosity hair.'
-    },
+  // Low porosity + HIGH density – richer styler for thick waves
+  {
+    name: 'Volumizing Curl Cream',
+    category: 'styler',
+    curlGroup: 'Wavy',
+    porosity: 'Low',
+    density: 'High',
+    notes: 'Helps control thicker waves while keeping movement.'
+  },
+  // Medium porosity + LOW density
+  {
+    name: 'Soft Hold Wave Gel',
+    category: 'styler',
+    curlGroup: 'Wavy',
+    porosity: 'Medium',
+    density: 'Low',
+    notes: 'Light gel that defines fine waves without crunch.'
+  },
 
-   // work for any, just using so everyone gets a scalp step and a clarifying step
+  // Medium porosity + HIGH density
+  {
+    name: 'Body Boost Wave Foam',
+    category: 'styler',
+    curlGroup: 'Wavy',
+    porosity: 'Medium',
+    density: 'High',
+    notes: 'Adds lift at the roots for full, dense waves.'
+  },
 
-    {
-      name: 'Soothing Scalp Serum',
-      category: 'scalp',
-      curlGroup: 'All',
-      porosity: 'All',
-      density: 'All',
-      notes: 'Light, calming serum for dry or irritated scalps.'
-    },
-    {
-      name: 'Gentle Clarifying Shampoo',
-      category: 'cleanser',
-      curlGroup: 'All',
-      porosity: 'All',
-      density: 'All',
-      notes: 'Use occasionally to remove buildup.'
-    }
-  ];
+  // High porosity – any density, more moisture
+  {
+    name: 'Hydrating Wave Leave-In Spray',
+    category: 'conditioner',
+    curlGroup: 'Wavy',
+    porosity: 'High',
+    density: 'All',
+    notes: 'Lightweight leave-in that adds moisture without heaviness.'
+  },
 
-  await HairProduct.bulkCreate(products);
-  console.log('Seeded hair products');
+
+
+     //CURLY HAIR... use when curlPattern starts with "3" 
+    // Medium porosity + LOW density
+  // Medium porosity – cleanser for any density
+  {
+    name: 'Creamy Hydrating Cleanser',
+    category: 'cleanser',
+    curlGroup: 'Curly',
+    porosity: 'Medium',
+    density: 'All',
+    notes: 'Gentle cleanser that keeps curls hydrated.'
+  },
+
+  // Medium porosity – conditioner (any density)
+  {
+    name: 'Creamy Hydrating Conditioner',
+    category: 'conditioner',
+    curlGroup: 'Curly',
+    porosity: 'Medium',
+    density: 'All',
+    notes: 'Adds slip and moisture.'
+  },
+
+  // Medium porosity + LOW density – lighter styler
+  {
+    name: 'Light Curl Defining Gel',
+    category: 'styler',
+    curlGroup: 'Curly',
+    porosity: 'Medium',
+    density: 'Low',
+    notes: 'Defines curls without weighing them down.'
+  },
+
+  // Medium porosity + HIGH density – stronger styler
+  {
+    name: 'Curl Defining Gel',
+    category: 'styler',
+    curlGroup: 'Curly',
+    porosity: 'Medium',
+    density: 'High',
+    notes: 'Medium hold to define curls and control frizz.'
+  },
+
+  // High porosity – richer conditioner
+  {
+    name: 'Moisture Lock Curl Conditioner',
+    category: 'conditioner',
+    curlGroup: 'Curly',
+    porosity: 'High',
+    density: 'All',
+    notes: 'Helps seal in moisture for thirsty curls.'
+  },
+
+  // Low porosity – lighter conditioner
+  {
+    name: 'Weightless Curl Conditioner',
+    category: 'conditioner',
+    curlGroup: 'Curly',
+    porosity: 'Low',
+    density: 'All',
+    notes: 'Moisturizes without causing buildup on low-porosity curls.'
+  },
+
+    //COILY HAIR... use when curlPattern starts with "4" 
+   // High porosity – cleanser (any density)
+  {
+    name: 'Nourishing Co-Wash Cleanser',
+    category: 'cleanser',
+    curlGroup: 'Coily',
+    porosity: 'High',
+    density: 'All',
+    notes: 'Creamy co-wash that gently cleanses and conditions.'
+  },
+
+  // High porosity – styler (any density)
+  {
+    name: 'Rich Butter Cream',
+    category: 'styler',
+    curlGroup: 'Coily',
+    porosity: 'High',
+    density: 'All',
+    notes: 'Seals in moisture and protects coils.'
+  },
+
+  // High porosity – treatment (any density)
+  {
+    name: 'Intense Moisture Hair Mask',
+    category: 'treatment',
+    curlGroup: 'Coily',
+    porosity: 'High',
+    density: 'All',
+    notes: 'Deep moisture treatment for dry, high-porosity hair.'
+  },
+
+  // Low/Medium porosity – lighter styler
+  {
+    name: 'Curl Softening Cream',
+    category: 'styler',
+    curlGroup: 'Coily',
+    porosity: 'Medium',
+    density: 'All',
+    notes: 'Softens coils without too much weight.'
+  },
+
+  // Medium porosity – treatment
+  {
+    name: 'Elasticity Repair Mask',
+    category: 'treatment',
+    curlGroup: 'Coily',
+    porosity: 'Medium',
+    density: 'All',
+    notes: 'Helps restore bounce and elasticity to coils.'
+  },
+
+
+  //  WEEKLY
+{
+  name: 'Soothing Scalp Serum',
+  category: 'scalp',
+  curlGroup: 'All',
+  porosity: 'All',
+  density: 'All',
+  notes: 'Light, calming serum for dry or irritated scalps.'
+},
+{
+  name: 'Gentle Clarifying Shampoo',
+  category: 'cleanser',
+  curlGroup: 'All',
+  porosity: 'All',
+  density: 'All',
+  notes: 'Use occasionally to remove buildup.'
+},
+
+// plus these NEW weekly masks:
+{
+  name: 'Protein Repair Mask',
+  category: 'treatment',
+  curlGroup: 'Wavy',
+  porosity: 'Low',
+  density: 'All',
+  notes: 'Strengthens fine wavy strands prone to over-hydration.'
+},
+{
+  name: 'Hydration Recovery Mask',
+  category: 'treatment',
+  curlGroup: 'Curly',
+  porosity: 'Medium',
+  density: 'All',
+  notes: 'Replenishes moisture balance for curly hair.'
+},
+{
+  name: 'Heavy Butter Mask',
+  category: 'treatment',
+  curlGroup: 'Coily',
+  porosity: 'High',
+  density: 'All',
+  notes: 'Deep moisture delivery for porous coils.'
 }
 
+    
+
+  ];
+  // loop through all obejcts in the products array to add them to the DB
+ for (const product of products) {
+    await HairProduct.create(product);
+  }
+
+  console.log("Seeded hair products");
+}
 sequelize.sync()
   .then(() => {
     console.log('Database synced');
@@ -238,13 +395,13 @@ function buildProTip(curlGroup) {
 }
 
 
-// grabbing the curl pattern, porosity, and density from user input
+// grabbing the curl pattern, porosity, and density from user input to make routine
 async function buildRoutineFromProducts({ curlPattern, porosity, density }) {
 
   // determing curl group based on selected curl pattern
   const curlGroup = getCurlGroup(curlPattern);
 
-  // get matching products 
+  // get matching products from the DB based on selected user curl group and porosity and keep in array
   const products = await HairProduct.findAll({
     where: {
       curlGroup: [curlGroup, 'All'],
@@ -253,27 +410,29 @@ async function buildRoutineFromProducts({ curlPattern, porosity, density }) {
     }
   });
 
-  //  helpers to pick products by category
 
-  // return only products whose category matches  string.
+
+  // helper to pick items by product categoy type (cleanser, styler, etc)
   const choose = (category) =>
     products.filter(p => p.category === category);
 
-  // creating arrays to split products into  groups
+  // creating arrays to organzie all possible products into  groups
   const cleansers    = choose('cleanser'); // all cleanser products
   const conditioners = choose('conditioner'); // all conditioners
   const stylers      = choose('styler');   // all styling products
   const treatments   = choose('treatment');  // deep treatments/masks
   const scalpProds   = choose('scalp');   // scalp serums and oils
 
-  //  build  steps that plug in product names
+  //  list to build  morning routine
   const morning = [];
 
+  // if styler is found, user product, otherwise use generic
   if (stylers.length > 0) {
     morning.push({
       title: 'Refresh & Style',
       main: `Use ${stylers[0].name}`,
-      note: `Apply to damp hair and scrunch to enhance your ${curlGroup.toLowerCase()} pattern.`
+      // note: `Apply to damp hair and scrunch to enhance your ${curlGroup.toLowerCase()} pattern.`
+      note: stylers[0].notes || ''
     });
   } else {
     morning.push({
@@ -289,7 +448,8 @@ async function buildRoutineFromProducts({ curlPattern, porosity, density }) {
     night.push({
       title: 'Cleanse (as needed)',
       main: `Wash with ${cleansers[0].name}`,
-      note: 'Focus on the scalp, use lukewarm water.'
+      note: cleansers[0].notes || ''
+      // note: 'Focus on the scalp, use lukewarm water.'
     });
   }
 
@@ -297,7 +457,8 @@ async function buildRoutineFromProducts({ curlPattern, porosity, density }) {
     night.push({
       title: 'Condition',
       main: `Apply ${conditioners[0].name}`,
-      note: 'Detangle gently with fingers or a wide-tooth comb.'
+      note: conditioners[0].notes || ''
+      // note: 'Detangle gently with fingers or a wide-tooth comb.'
     });
   }
 
@@ -313,7 +474,8 @@ async function buildRoutineFromProducts({ curlPattern, porosity, density }) {
     weekly.push({
       title: 'Deep Treatment',
       main: `Use ${treatments[0].name} once a week`,
-      note: 'Leave on for 15–30 minutes with a cap for extra penetration.'
+      note: treatments[0].notes || ''
+      // note: 'Leave on for 15–30 minutes with a cap for extra penetration.'
     });
   }
 
@@ -321,7 +483,8 @@ async function buildRoutineFromProducts({ curlPattern, porosity, density }) {
     weekly.push({
       title: 'Scalp Care',
       main: `Apply ${scalpProds[0].name}`,
-      note: 'Massage gently with fingertips for a few minutes.'
+      note: scalpProds[0].notes || ''
+      // note: 'Massage gently with fingertips for a few minutes.'
     });
   }
 
@@ -332,9 +495,9 @@ async function buildRoutineFromProducts({ curlPattern, porosity, density }) {
   });
 
   const profileSummary =
-    `${curlPattern || 'N/A'} ${curlGroup.toLowerCase()} hair, ` +
-    `${(porosity || 'Medium').toLowerCase()} porosity, ` +
-    `${(density || 'Medium').toLowerCase()} density`;
+    `${curlPattern || 'N/A'} ${curlGroup} hair, ` +
+    `${(porosity || 'Medium')} porosity, ` +
+    `${(density || 'Medium')} density`;
 
   const proTip = buildProTip(curlGroup);
 
@@ -403,7 +566,7 @@ app.get('/quiz', function(req,res,next){
 // });
 
 app.get('/routine', async function(req, res, next) {
-  const { curlPattern, porosity, density, scalp, humidity } = req.query;
+  const { name, curlPattern, porosity, density, scalp, humidity } = req.query;
   let goals = req.query.goals || [];
   if (!Array.isArray(goals)) goals = [goals];
 
@@ -413,6 +576,7 @@ app.get('/routine', async function(req, res, next) {
 
     res.render('routine', {
       title: 'Curly Care Coach - Your Routine',
+      name,
       profileSummary,
       curlPattern,
       porosity,

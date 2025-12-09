@@ -4,11 +4,20 @@
     <p>Answer a few quick questions to get your personalized routine</p>
   </header>
 
+
+{{!-- creating box for the quiz form --}}
   <section class="form-card">
-    {{!-- <form id="hairQuiz"> --}}
+
+
+{{!-- send answers to routine page --}}
     <form id="hairQuiz" method="GET" action="/routine">
 
-      <!-- Curl pattern -->
+<div class="form-group">
+  <label for="name">What's your name?</label>
+  <input type="text" id="name" name="name" placeholder="Enter your name" />
+</div>
+
+{{!-- curl pattern quiz section --}}
 <div class="form-group">
   <label for="curlPattern">What's your curl pattern?</label>
   <select id="curlPattern" name="curlPattern">
@@ -25,18 +34,18 @@
   </select>
 </div>
 
-<!-- Porosity -->
+{{!-- porosity quiz section --}}
 <div class="form-group">
   <label for="porosity">What's your hair porosity?</label>
   <select id="porosity" name="porosity">
     <option value="" disabled selected>Select porosity level</option>
-    <option value="Low">Low - Water beads up, takes long to absorb</option>
-    <option value="Medium">Medium - Balanced moisture retention</option>
-    <option value="High">High - Absorbs quickly, loses moisture fast</option>
+    <option value="Low">Low</option>
+    <option value="Medium">Medium</option>
+    <option value="High">High</option>
   </select>
 </div>
 
-<!-- Density -->
+{{!-- density quiz section --}}
 <div class="form-group">
   <label for="density">What's your hair density?</label>
   <select id="density" name="density">
@@ -48,7 +57,7 @@
 </div>
 
 
-      <!-- Scalp -->
+{{!-- scalp quiz section --}}
       <div class="form-group">
         <label for="scalp">What's your scalp condition?</label>
         <select id="scalp" name="scalp">
@@ -59,7 +68,7 @@
         </select>
       </div>
 
-      <!-- Goals -->
+{{!-- hair goals quiz section --}}
       <div class="form-group">
         <p class="group-label">
           What are your main hair goals? <span>(Select all that apply)</span>
@@ -67,11 +76,11 @@
         <div class="checkbox-grid">
           <label>
             <input type="checkbox" name="goals" value="moisture" />
-            Moisture &amp; Hydration
+            Moisture
           </label>
           <label>
             <input type="checkbox" name="goals" value="volume" />
-            Volume &amp; Lift
+            Volume 
           </label>
           <label>
             <input type="checkbox" name="goals" value="frizz" />
@@ -83,7 +92,7 @@
           </label>
           <label>
             <input type="checkbox" name="goals" value="strength" />
-            Strength &amp; Growth
+            Strength 
           </label>
           <label>
             <input type="checkbox" name="goals" value="scalpHealth" />
@@ -92,20 +101,9 @@
         </div>
       </div>
 
-      <!-- Humidity -->
-      <div class="form-group">
-        <p class="group-label">
-          What's your typical humidity level?
-        </p>
-        <select id="humidity" name="humidity">
-          <option value="" disabled selected>Select humidity level</option>
-          <option>Low - Dry Climate (0–39%)</option>
-          <option>Medium - Balanced (40–59%)</option>
-          <option>High - Humid Climate (60%+)</option>
-        </select>
-      </div>
+  
 
-      <hr class="divider" />
+
 
       <!-- Button -->
       <button type="submit" class="submit-btn">

@@ -4,31 +4,42 @@
     <p>Based on your unique hair profile, here's what we recommend</p>
   </header>
 
-  <!-- Hair profile card -->
+{{!-- hair profile card section with user inputs --}}
   <section class="profile-card">
     <div class="profile-header">
       <i class="fa-solid fa-user"></i>
-      <span class="profile-title">Your Hair Profile</span>
+      {{!-- <span class="profile-title">Your Hair Profile</span> --}}
+      {{!-- personalized with your name for the title --}}
+      <span class="profile-title">
+  {{#if name}}
+    {{name}}'s Hair Profile
+  {{else}}
+    Your Hair Profile
+  {{/if}}
+</span>
+
     </div>
 
-    <!-- This text can be replaced dynamically later -->
+    {{!-- grabbing the user inputted info from the quiz to show in the profile section --}}
     <p id="profileSummary" class="profile-summary">
   {{profileSummary}}
   </p>
 
+
+ {{!-- grabbing the user inputted info from the quiz to show TAGS in the profile section --}}
    <div class="profile-tags" id="profileTags">
 
-  {{!-- Scalp condition tag --}}
+  {{!-- if scalp selected show green  tag --}}
   {{#if scalp}}
     <span class="tag tag-green">{{scalp}}</span>
   {{/if}}
 
-  {{!-- Humidity tag --}}
+  {{!-- if humidity selected show blue  tag --}}
   {{#if humidity}}
     <span class="tag tag-blue">{{humidity}}</span>
   {{/if}}
 
-  {{!-- Goals: render one tag per selected goal --}}
+  {{!-- for each hair goal selected make a new tag to show in the profile section --}}
   {{#if goals}}
     {{#each goals}}
       <span class="tag tag-goal">{{this}}</span>
@@ -39,22 +50,29 @@
 
   </section>
 
-  <!-- Routine cards -->
+
+  {{!-- ROUTINE SECTION --}}
+
+{{!-- routine cards --}}
   <section class="routine-grid">
-    <!-- Morning -->
+
+{{!-- morning routine card --}}
     <article class="routine-card" id="morningCard">
       <header class="routine-card-header">
         <i class="fa-solid fa-sun"></i>
         <h2>Morning</h2>
       </header>
       <hr class="divider" />
+
+      {{!-- loop through each morning routine step and show title, main, and note --}}
       <ol class="step-list" id="morningSteps">
   {{#each morningSteps}}
     <li class="step">
       <div class="step-number">{{inc @index}}</div>
       <div class="step-content">
         <h3>{{this.title}}</h3>
-        <p>{{this.main}}</p>
+        {{!-- <p>{{this.main}}</p> --}}
+        <p class="step-main">{{this.main}}</p>
         <p class="step-note">{{this.note}}</p>
       </div>
     </li>
@@ -70,13 +88,14 @@
         <h2>Night</h2>
       </header>
       <hr class="divider" />
+            {{!-- loop through each night routine step and show title, main, and note --}}
       <ol class="step-list" id="nightSteps">
   {{#each nightSteps}}
     <li class="step">
       <div class="step-number">{{inc @index}}</div>
       <div class="step-content">
         <h3>{{this.title}}</h3>
-        <p>{{this.main}}</p>
+        <p class="step-main">{{this.main}}</p>
         <p class="step-note">{{this.note}}</p>
       </div>
     </li>
@@ -92,13 +111,14 @@
         <h2>Weekly</h2>
       </header>
       <hr class="divider" />
+            {{!-- loop through each night routine step  --}}
       <ol class="step-list" id="weeklySteps">
   {{#each weeklySteps}}
     <li class="step">
       <div class="step-number">{{inc @index}}</div>
       <div class="step-content">
         <h3>{{this.title}}</h3>
-        <p>{{this.main}}</p>
+        <p class="step-main">{{this.main}}</p>
         <p class="step-note">{{this.note}}</p>
       </div>
     </li>
@@ -108,7 +128,7 @@
     </article>
   </section>
 
-  <!-- Pro tip card -->
+{{!-- pro tip card - show the tip that corresponds with the curl group from user input --}}
 <section class="tip-card" id="tipCard">
   <div class="tip-icon">!</div>
   <div class="tip-content">
@@ -116,4 +136,11 @@
     <p>{{proTip}}</p>
   </div>
 </section>
+
+
+{{!-- back to home link --}}
+<section class="return-home">
+  <a href="/" class="home-btn">← Back to Home</a>
+</section>
+
 </main>

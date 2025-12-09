@@ -10,13 +10,14 @@ body {
   color: #1f2937;
 }
 
-/* Page container */
+/* center and add top/side/bottom space */
 .routine-page {
   max-width: 1100px;
   margin: 0 auto;
   padding: 60px 16px 80px;
 }
 
+/* center and add space under */
 .hero-header{
   text-align: center;
   margin-bottom: 32px;
@@ -35,7 +36,7 @@ body {
   color: #6b7280;
 }
 
-/* Profile card */
+/* your profile section */
 .profile-card {
   margin-top: 32px;
   background: #ffffff;
@@ -44,6 +45,8 @@ body {
   box-shadow: 0 12px 34px rgba(15, 23, 42, 0.12);
 }
 
+
+/* align title and icon next to each other  */
 .profile-header {
   display: flex;
   align-items: center;
@@ -51,31 +54,30 @@ body {
   margin-bottom: 8px;
 }
 
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  background-color: #079669;
-}
-
+/* title text for profile card */
 .profile-title {
   font-weight: 700;
   font-size: 18px;
   font-family: "Cal Sans", sans-serif;
 }
 
+/* text for the curl type, porosity, and desnity from the user input */
 .profile-summary {
   margin: 0 0 10px;
   color: #111827;
   font-size: 14px;
 }
 
+
+/* container for the tags - show them in a row, and space btwn them */
 .profile-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
 
+/* format for the tags in profile */
+/* rounded, centered, small text */
 .tag {
   display: inline-flex;
   align-items: center;
@@ -95,7 +97,7 @@ body {
   color: #0f5f8a;
 }
 
-/* Routine grid */
+/* Routine grid for morning, night, weekly parts - 3 columns for this part */
 .routine-grid {
   margin-top: 26px;
   display: grid;
@@ -103,7 +105,7 @@ body {
   gap: 18px;
 }
 
-/* Routine card */
+/* individual routine card stylings */
 .routine-card {
   background-color: #ffffff;
   border-radius: 24px;
@@ -111,6 +113,8 @@ body {
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
 }
 
+/* foramtting for the title of each card */
+/* put icon and title next to each other */
 .routine-card-header {
   display: flex;
   align-items: center;
@@ -118,28 +122,8 @@ body {
   margin-bottom: 10px;
 }
 
-.routine-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-}
 
-.routine-icon[data-type="sun"] {
-  background-color: #fff6db;
-}
-
-.routine-icon[data-type="moon"] {
-  background-color: #ebe5ff;
-}
-
-.routine-icon[data-type="calendar"] {
-  background-color: #dff9f0;
-}
-
+/* title text for each routine card */
 .routine-card-header h2 {
   margin: 0;
   font-size: 18px;
@@ -160,6 +144,8 @@ body {
   margin: 0;
 }
 
+/* step container layoaut */
+/* left-align step title and number */
 .step {
   display: flex;
   align-items: flex-start;
@@ -167,6 +153,8 @@ body {
   margin-bottom: 14px;
 }
 
+
+/* stlying for the step numbers */
 .step-number {
   flex-shrink: 0;
   width: 24px;
@@ -181,6 +169,8 @@ body {
   justify-content: center;
 }
 
+
+/* title next to each step number */
 .step-content h3 {
   margin: 0;
   font-size: 14px;
@@ -188,16 +178,20 @@ body {
   color: #111827;
 }
 
+/* step description text */
 .step-content p {
   margin: 3px 0 0;
   font-size: 13px;
   color: #4b5563;
 }
 
+/* step note text */
 .step-note {
   margin-top: 2px;
   font-style: italic;
-  color: #16a34a;
+  /* color: #16a34a !important;  */
+  /* color: #079669 !important; */
+  color: #0f5f8a !important;
 }
 
 /* Pro tip card */
@@ -239,6 +233,60 @@ body {
 
 
 .tag-goal {
-  background-color: #fee2ff;  /* soft pink/lilac */
+  background-color: #fee2ff; 
   color: #86198f;
+}
+
+.return-home {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.home-btn {
+  display: inline-block;
+  background-color: #0bb980;
+  color: white;
+  padding: 12px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.home-btn:hover {
+  background-color: #079669;
+  transform: translateY(-2px);
+}
+
+.step-main {
+  font-weight: 600;
+  /* background-color: #fee2e2;   
+  color: #b91c1c !important; */
+    background-color: #d8f1ff;
+  color: #0f5f8a !important;
+  padding: 4px 8px;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+
+/* Responsive  */
+@media (max-width: 600px) {
+.routine-grid {
+    grid-template-columns: 1fr;   /* one card per row */
+  }
+
+  .routine-card {
+    padding: 16px 16px 20px;
+  }
+
+  .hero-header h1 {
+    font-size: 26px;
+  }
+
+  .profile-card {
+    padding: 14px 16px 12px;  /* “shrunk” profile card */
+    border-radius: 18px;
+  }
 }
