@@ -290,3 +290,15 @@ body {
     border-radius: 18px;
   }
 }
+
+/* profile and routine cards animation */
+.profile-card,
+.routine-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover effect for profile and roitine cards */
+.profile-card:hover,
+.routine-card:hover {
+  transform: translateY(-6px);
+}

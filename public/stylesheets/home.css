@@ -157,3 +157,14 @@ footer p {
     text-align: center;
   }
 }
+
+/*  stat blocks interactive */
+.stat {
+  transition: transform 0.25s ease, text-shadow 0.25s ease;
+  cursor: default; 
+}
+
+/* Hover effect */
+.stat:hover {
+    transform: translateY(-6px);
+}

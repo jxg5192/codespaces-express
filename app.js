@@ -6,8 +6,6 @@ var logger = require('morgan');
 
 
 
-// var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
 
 var app = express();
 
@@ -25,25 +23,9 @@ const sequelize = new Sequelize({
   logging: false
 });
 
-// define entry
-// Task model
-// const Task = sequelize.define('Task', {
-//   name: { type: DataTypes.STRING, allowNull: false },
-//   description: { type: DataTypes.TEXT }
-// });
-// Hair routine rules table
-// const RoutineRule = sequelize.define('RoutineRule', {
-//   curlPattern: { type: DataTypes.STRING, allowNull: false },  // e.g. "2C"
-//   porosity: { type: DataTypes.STRING },                       // e.g. "High"
-//   profileSummary: { type: DataTypes.STRING },                 // text shown under "Your Hair Profile"
-//   morning: { type: DataTypes.TEXT },                          // newline-separated steps
-//   night: { type: DataTypes.TEXT },
-//   weekly: { type: DataTypes.TEXT }
-// });
-
 
 // THE DATABASE
-// creating hairproduct table
+// creating HairProduct table
 const HairProduct = sequelize.define('HairProduct', {
   name: { type: DataTypes.STRING, allowNull: false },        // product name (Lightweight Foaming Mousse, etc.) 
   category: { type: DataTypes.STRING, allowNull: false },    // what kind of product it is (cleanser, conditioner, styler, treatment, scalp)
@@ -54,51 +36,16 @@ const HairProduct = sequelize.define('HairProduct', {
 });
 
 
-// ensure database tables exist; don't block export - log result
-// sequelize.sync().then(() => {
-//   console.log('Database synced');
-// }).catch(err => {
-//   console.error('Unable to sync database:', err);
-// });
-
-// async function seedIfEmpty() {
-//   const count = await RoutineRule.count();
-//   if (count === 0) {
-//     await RoutineRule.create({
-//       curlPattern: '2C',
-//       porosity: 'High',
-//       profileSummary: '2C Curls, High Porosity, Medium Density, Dry Scalp',
-//       morning: [
-//         'Refresh | Water spray + sea salt spray | Scrunch gently to revive curls',
-//         'Style & Define | Lightweight mousse | Scrunch upward from ends to roots'
-//       ].join('\n'),
-//       night: [
-//         'Co-Wash | Cleansing conditioner or low-poo | Massage scalp gently to stimulate circulation',
-//         'Deep Condition | Rich moisturizing conditioner | Apply from mid-lengths to ends, leave for 5–10 minutes',
-//         'Protect | Satin pillowcase or silk bonnet | Use pineapple method to preserve curls overnight'
-//       ].join('\n'),
-//       weekly: [
-//         'Deep Treatment | Intensive hair mask or hot oil treatment | Apply to clean hair, cover with shower cap for 20–30 minutes',
-//         'Scalp Treatment | Scalp oil massage | Massage for 5 minutes to boost circulation',
-//         'Clarify | Clarifying shampoo | Remove product buildup once every 2–4 weeks'
-//       ].join('\n')
-//     });
-//   }
-// }
-
-// async function seedIfEmpty() {
-//   const count = await HairProduct.count();
-//   if (count > 0) return;
-
+// to clear table before inserting new products
 async function seedIfEmpty() {
   console.log("Clearing hair products...");
-  await HairProduct.destroy({ where: {} }); // deletes old rows
+  await HairProduct.destroy({ where: {} }); // deletes old hair products from the table
 
 
   // creating products array (rows to be insert into database)
   const products = [
     //WAVY HAIR... use when curlPattern starts with "2" 
-   // Low porosity – all densities (gentle cleanser)
+   // Low porosity and all densities, a gentle cleanser
   {
     name: 'Gentle Low-Poo Cleanser',
     category: 'cleanser',
@@ -108,7 +55,7 @@ async function seedIfEmpty() {
     notes: 'Sulfate-free, light cleanser that won’t dry out fine waves.'
   },
 
-  // Low porosity + LOW density – very light styler
+  // Low porosity and low density, a  light styler
   {
     name: 'Lightweight Foaming Mousse',
     category: 'styler',
@@ -118,7 +65,7 @@ async function seedIfEmpty() {
     notes: 'Adds volume and hold without weighing hair down.'
   },
 
-  // Low porosity + HIGH density – richer styler for thick waves
+  // Low porosity and high density, a richer styler for thick hair
   {
     name: 'Volumizing Curl Cream',
     category: 'styler',
@@ -127,7 +74,7 @@ async function seedIfEmpty() {
     density: 'High',
     notes: 'Helps control thicker waves while keeping movement.'
   },
-  // Medium porosity + LOW density
+  // Medium porosity and low density, a light gel
   {
     name: 'Soft Hold Wave Gel',
     category: 'styler',
@@ -137,7 +84,7 @@ async function seedIfEmpty() {
     notes: 'Light gel that defines fine waves without crunch.'
   },
 
-  // Medium porosity + HIGH density
+  // Medium porosity and high density, a foam
   {
     name: 'Body Boost Wave Foam',
     category: 'styler',
@@ -147,7 +94,7 @@ async function seedIfEmpty() {
     notes: 'Adds lift at the roots for full, dense waves.'
   },
 
-  // High porosity – any density, more moisture
+  // High porosity and any density, something with moisture
   {
     name: 'Hydrating Wave Leave-In Spray',
     category: 'conditioner',
@@ -160,8 +107,8 @@ async function seedIfEmpty() {
 
 
      //CURLY HAIR... use when curlPattern starts with "3" 
-    // Medium porosity + LOW density
-  // Medium porosity – cleanser for any density
+   
+  // Medium porosity and any desnity, just cleanser
   {
     name: 'Creamy Hydrating Cleanser',
     category: 'cleanser',
@@ -171,7 +118,7 @@ async function seedIfEmpty() {
     notes: 'Gentle cleanser that keeps curls hydrated.'
   },
 
-  // Medium porosity – conditioner (any density)
+  // Medium porosity conditioner for any density
   {
     name: 'Creamy Hydrating Conditioner',
     category: 'conditioner',
@@ -181,7 +128,7 @@ async function seedIfEmpty() {
     notes: 'Adds slip and moisture.'
   },
 
-  // Medium porosity + LOW density – lighter styler
+  // Medium porosity and low density - a lighter styler
   {
     name: 'Light Curl Defining Gel',
     category: 'styler',
@@ -191,7 +138,7 @@ async function seedIfEmpty() {
     notes: 'Defines curls without weighing them down.'
   },
 
-  // Medium porosity + HIGH density – stronger styler
+  // Medium porosity and high density, a stronger styler
   {
     name: 'Curl Defining Gel',
     category: 'styler',
@@ -201,7 +148,7 @@ async function seedIfEmpty() {
     notes: 'Medium hold to define curls and control frizz.'
   },
 
-  // High porosity – richer conditioner
+  // High porosity , use richer conditioner
   {
     name: 'Moisture Lock Curl Conditioner',
     category: 'conditioner',
@@ -211,7 +158,7 @@ async function seedIfEmpty() {
     notes: 'Helps seal in moisture for thirsty curls.'
   },
 
-  // Low porosity – lighter conditioner
+  // Low porosity, use a lighter conditioner
   {
     name: 'Weightless Curl Conditioner',
     category: 'conditioner',
@@ -222,7 +169,7 @@ async function seedIfEmpty() {
   },
 
     //COILY HAIR... use when curlPattern starts with "4" 
-   // High porosity – cleanser (any density)
+   // High porosity cleanser (any density)
   {
     name: 'Nourishing Co-Wash Cleanser',
     category: 'cleanser',
@@ -232,7 +179,7 @@ async function seedIfEmpty() {
     notes: 'Creamy co-wash that gently cleanses and conditions.'
   },
 
-  // High porosity – styler (any density)
+  // High porosity styler (any density)
   {
     name: 'Rich Butter Cream',
     category: 'styler',
@@ -242,17 +189,17 @@ async function seedIfEmpty() {
     notes: 'Seals in moisture and protects coils.'
   },
 
-  // High porosity – treatment (any density)
+  // High porosity treatment (any density)
   {
     name: 'Intense Moisture Hair Mask',
     category: 'treatment',
     curlGroup: 'Coily',
     porosity: 'High',
     density: 'All',
-    notes: 'Deep moisture treatment for dry, high-porosity hair.'
+    notes: 'Deep moisture treatment for high-porosity hair.'
   },
 
-  // Low/Medium porosity – lighter styler
+  // Low/Medium porosity - lighter styler
   {
     name: 'Curl Softening Cream',
     category: 'styler',
@@ -262,7 +209,7 @@ async function seedIfEmpty() {
     notes: 'Softens coils without too much weight.'
   },
 
-  // Medium porosity – treatment
+  // Medium porosity – user a treatment or mask
   {
     name: 'Elasticity Repair Mask',
     category: 'treatment',
@@ -273,14 +220,14 @@ async function seedIfEmpty() {
   },
 
 
-  //  WEEKLY
+  //  WEEKLY and to be used for any hair types
 {
   name: 'Soothing Scalp Serum',
   category: 'scalp',
   curlGroup: 'All',
   porosity: 'All',
   density: 'All',
-  notes: 'Light, calming serum for dry or irritated scalps.'
+  notes: 'Light, calming serum for a healthy scalp.'
 },
 {
   name: 'Gentle Clarifying Shampoo',
@@ -291,7 +238,7 @@ async function seedIfEmpty() {
   notes: 'Use occasionally to remove buildup.'
 },
 
-// plus these NEW weekly masks:
+// weekly masks based on curl group and porosity
 {
   name: 'Protein Repair Mask',
   category: 'treatment',
@@ -412,9 +359,13 @@ async function buildRoutineFromProducts({ curlPattern, porosity, density }) {
 
 
 
-  // helper to pick items by product categoy type (cleanser, styler, etc)
-  const choose = (category) =>
-    products.filter(p => p.category === category);
+ 
+
+  function choose(category) {
+  return products.filter(function (p) {
+    return p.category === category;
+  });
+}
 
   // creating arrays to organzie all possible products into  groups
   const cleansers    = choose('cleanser'); // all cleanser products
@@ -431,7 +382,6 @@ async function buildRoutineFromProducts({ curlPattern, porosity, density }) {
     morning.push({
       title: 'Refresh & Style',
       main: `Use ${stylers[0].name}`,
-      // note: `Apply to damp hair and scrunch to enhance your ${curlGroup.toLowerCase()} pattern.`
       note: stylers[0].notes || ''
     });
   } else {
@@ -449,7 +399,6 @@ async function buildRoutineFromProducts({ curlPattern, porosity, density }) {
       title: 'Cleanse (as needed)',
       main: `Wash with ${cleansers[0].name}`,
       note: cleansers[0].notes || ''
-      // note: 'Focus on the scalp, use lukewarm water.'
     });
   }
 
@@ -458,7 +407,6 @@ async function buildRoutineFromProducts({ curlPattern, porosity, density }) {
       title: 'Condition',
       main: `Apply ${conditioners[0].name}`,
       note: conditioners[0].notes || ''
-      // note: 'Detangle gently with fingers or a wide-tooth comb.'
     });
   }
 
@@ -475,7 +423,6 @@ async function buildRoutineFromProducts({ curlPattern, porosity, density }) {
       title: 'Deep Treatment',
       main: `Use ${treatments[0].name} once a week`,
       note: treatments[0].notes || ''
-      // note: 'Leave on for 15–30 minutes with a cap for extra penetration.'
     });
   }
 
@@ -484,7 +431,6 @@ async function buildRoutineFromProducts({ curlPattern, porosity, density }) {
       title: 'Scalp Care',
       main: `Apply ${scalpProds[0].name}`,
       note: scalpProds[0].notes || ''
-      // note: 'Massage gently with fingertips for a few minutes.'
     });
   }
 
@@ -509,71 +455,30 @@ async function buildRoutineFromProducts({ curlPattern, porosity, density }) {
 // app.use('/users', usersRouter);
 
 
+// home page
 app.get('/', function(req, res, next) {
   res.render('index', { title: 'Curly Care Coach' });
 });
 
+// quiz page
 app.get('/quiz', function(req,res,next){
   res.render('quiz', {title:'Curly Care Coach - Quiz'});
 });
 
-// app.get('/routine', function(req,res,next){
-//   res.render('routine', {title:'Curly Care Coach - Your Routine'});
-// });
-// app.get('/routine', async function(req, res, next) {
-//   const { curlPattern, porosity, density, scalp, humidity } = req.query;
-
-//   try {
-//     // try to find a rule that matches the curlPattern (you can refine this later)
-//     const rule = await RoutineRule.findOne({
-//       where: { curlPattern: curlPattern || '2C' }
-//     });
-
-//     // fallback text if DB rule missing
-//     const profileSummary =
-//       rule?.profileSummary ||
-//       `${curlPattern || '2C'} Curls, ${porosity || 'Unknown'} Porosity, ${density || 'Unknown'} Density, ${scalp || 'Unknown'} Scalp`;
-
-//     // convert newline string into arrays of "step objects"
-//     function parseSteps(text) {
-//       if (!text) return [];
-//       // each line: "Title | main text | note"
-//       return text.split('\n').map(line => {
-//         const [title, main, note] = line.split('|').map(s => s.trim());
-//         return { title, main, note };
-//       });
-//     }
-
-//     const morningSteps = parseSteps(rule?.morning);
-//     const nightSteps = parseSteps(rule?.night);
-//     const weeklySteps = parseSteps(rule?.weekly);
-
-//     res.render('routine', {
-//       title: 'Curly Care Coach - Your Routine',
-//       profileSummary,
-//       curlPattern,
-//       porosity,
-//       density,
-//       scalp,
-//       humidity,
-//       morningSteps,
-//       nightSteps,
-//       weeklySteps
-//     });
-//   } catch (err) {
-//     next(err);
-//   }
-// });
-
+// routine page
 app.get('/routine', async function(req, res, next) {
-  const { name, curlPattern, porosity, density, scalp, humidity } = req.query;
-  let goals = req.query.goals || [];
-  if (!Array.isArray(goals)) goals = [goals];
+  const { name, curlPattern, porosity, density, scalp, humidity } = req.query; // pull quiz/user answers from the url
+  let goals = req.query.goals || []; // if user selects goals, store them, otherwise keep empty
+  if (!Array.isArray(goals)) goals = [goals]; // show goal aas string
 
+
+  // build the users personalized routine using the helper function
   try {
     const { profileSummary, curlGroup, proTip, morning, night, weekly } =
       await buildRoutineFromProducts({ curlPattern, porosity, density });
 
+
+      // redner the results/routine page
     res.render('routine', {
       title: 'Curly Care Coach - Your Routine',
       name,
@@ -596,9 +501,7 @@ app.get('/routine', async function(req, res, next) {
 });
 
 
-// app.get('/', function(req,res,next){
-//   res.render('index', {title:'Express'});
-// });
+
 
 app.get('/page2', function(req,res,next){
   res.render('index', {title:'page2'});
@@ -609,29 +512,6 @@ app.get('/page2', function(req,res,next){
 // can grab things from lists in your database
 app.get('/user/:name', function(req,res,next){
   res.render('index', {title:req.params.name});
-});
-
-// DATABASE
-// GET: show "Add Task" form
-app.get('/addtask', function(req, res, next) {
-  res.render('addtask', { title: 'Add Task' });
-});
-
-// POST: create Task in database
-app.post('/addtask', async function(req, res, next) {
-  try {
-    const created = await Task.create({
-      name: req.body.name,
-      description: req.body.description
-    });
-
-    res.render('task_submitted', {
-      title: 'Task Saved',
-      task: created
-    });
-  } catch (err) {
-    next(err);
-  }
 });
 
 
