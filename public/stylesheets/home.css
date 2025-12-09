@@ -12,7 +12,7 @@ body {
 
 .hero {
   text-align: center;
-  padding: 80px 20px;
+  padding: 80px 20px 35px;
   max-width: 900px;
   margin: auto;
 }
@@ -168,3 +168,22 @@ footer p {
 .stat:hover {
     transform: translateY(-6px);
 }
+
+
+.video-btn {
+  display: block; 
+  margin: 24px auto 0px;  /* spacing above & below */
+  /* margin-bottom: 10px; */
+  width: fit-content;
+  /* margin: 0 auto 10px; */
+  background-color: #d8f1ff;
+  color: #0f5f8a;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  /* display: inline-block; */
+}
+
+
